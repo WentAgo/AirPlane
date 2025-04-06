@@ -1,1 +1,52 @@
-<p>signup works!</p>
+<div class="signup-container">
+    <h2>Regisztráció</h2>
+  
+    <form>
+      <div class="row">
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Keresztnév</mat-label>
+          <input matInput placeholder="Keresztnév" required>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Vezetéknév</mat-label>
+          <input matInput placeholder="Vezetéknév" required>
+        </mat-form-field>
+      </div>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>E-mail cím</mat-label>
+        <input matInput type="email" placeholder="E-mail cím" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Telefonszám</mat-label>
+        <input matInput type="tel" placeholder="+36..." required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ország</mat-label>
+        <mat-select placeholder="Válassz országot" required>
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Jelszó</mat-label>
+        <input matInput type="password" placeholder="Jelszó" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Jelszó megismétlése</mat-label>
+        <input matInput type="password" placeholder="Jelszó ismét" required>
+      </mat-form-field>
+  
+      <div class="button-row">
+        <button mat-raised-button color="primary">Regisztráció</button>
+        <button mat-stroked-button color="accent" routerLink="/search">Vissza</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,10 +1,21 @@
-<nav>
-    <ul>
-      <li><a routerLink="/search">Keresés</a></li>
-      <li><a routerLink="/bookings">Foglalásaim</a></li>
-      <li><a routerLink="/login">Bejelentkezés</a></li>
-      <li><a routerLink="/signup">Regisztráció</a></li>
-      <li><a routerLink="/profile">Profil</a></li>
-    </ul>
-  </nav>
+<div class="menu">
+    <nav>
+      <ul>
+        <!-- Ha nincs bejelentkezve a felhasználó -->
+        <ng-container *ngIf="!isLogIn">
+          <li><a routerLink="/login">Bejelentkezés</a></li>
+          <li><a routerLink="/signup">Regisztráció</a></li>
+          <li><a routerLink="/search">Keresés</a></li>
+        </ng-container>
+  
+        <!-- Ha be van jelentkezve a felhasználó -->
+        <ng-container *ngIf="isLogIn">
+          <li><a routerLink="/search" (click)="logout()">Kijelentkezés</a></li>
+          <li><a routerLink="/search">Keresés</a></li>
+          <li><a routerLink="/bookings">Foglalásaim</a></li>
+          <li><a routerLink="/profile">Profil</a></li>
+        </ng-container>
+      </ul>
+    </nav>
+  </div>
   

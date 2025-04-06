@@ -1,0 +1,48 @@
+.search-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-block, .results-block {
+    margin-bottom: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .results-block {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+  
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: #3f51b5;
+      color: white;
+      font-weight: bold;
+    }
+  
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  
+    .mat-icon {
+      color: #3f51b5;
+    }
+  }
+  
