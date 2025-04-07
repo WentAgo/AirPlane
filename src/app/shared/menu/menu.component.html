@@ -1,21 +1,31 @@
-<div class="menu">
-    <nav>
-      <ul>
-        <!-- Ha nincs bejelentkezve a felhasználó -->
-        <ng-container *ngIf="!isLogIn">
-          <li><a routerLink="/login">Bejelentkezés</a></li>
-          <li><a routerLink="/signup">Regisztráció</a></li>
-          <li><a routerLink="/search">Keresés</a></li>
-        </ng-container>
-  
-        <!-- Ha be van jelentkezve a felhasználó -->
-        <ng-container *ngIf="isLogIn">
-          <li><a routerLink="/search" (click)="logout()">Kijelentkezés</a></li>
-          <li><a routerLink="/search">Keresés</a></li>
-          <li><a routerLink="/bookings">Foglalásaim</a></li>
-          <li><a routerLink="/profile">Profil</a></li>
-        </ng-container>
-      </ul>
-    </nav>
-  </div>
-  
+
+  <mat-nav-list>
+    <a mat-list-item routerLink="/search" routerLinkActive="active-list-item">
+      <span matListItemTitle>{{'Keresés' | uppercase}}</span>
+    </a>
+    @if (isLoggedIn) {
+      <a mat-list-item routerLink="/profile" routerLinkActive="active-list-item">
+        <span matListItemTitle>{{'Profil' | uppercase}}</span>
+      </a>
+    }
+    @if (isLoggedIn) {
+      <a mat-list-item routerLink="/bookings" routerLinkActive="active-list-item">
+        <span matListItemTitle>{{'Foglalásaim' | uppercase}}</span>
+      </a>
+    }
+    @if (isLoggedIn) {
+      <a mat-list-item routerLink="/search" routerLinkActive="active-list-item" (click)="logout()">
+        <span matListItemTitle>{{'Kijelentkezés' | uppercase}}</span>
+      </a>
+    }
+    @if (!isLoggedIn) {
+      <a mat-list-item routerLink="/login" routerLinkActive="active-list-item">
+        <span matListItemTitle>{{'Bejelentkezés' | uppercase}}</span>
+      </a>
+    }
+    @if (!isLoggedIn) {
+      <a mat-list-item routerLink="/signup" routerLinkActive="active-list-item">
+        <span matListItemTitle>{{'Regisztráció' | uppercase}}</span>
+      </a>
+    }
+  </mat-nav-list>

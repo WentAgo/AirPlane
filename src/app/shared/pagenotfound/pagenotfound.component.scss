@@ -1,0 +1,38 @@
+/* 404 oldal stílusai */
+.page-not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f4f6f8;
+    padding: 2rem;
+  
+    .error-icon {
+      font-size: 100px;
+      color: #f44336;
+      margin-bottom: 1rem;
+    }
+  
+    .error-title {
+      font-size: 2.5rem;
+      color: #1976d2;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+  
+    .error-message {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+  
+    .button-container {
+      button {
+        font-size: 1rem;
+        padding: 0.75rem 2rem;
+      }
+    }
+  }
+  

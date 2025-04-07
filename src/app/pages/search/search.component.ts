@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +10,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../shared/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -29,6 +31,24 @@ import { CommonModule } from '@angular/common';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
+  isLoggedIn: boolean = false;
+  private authSubscription: Subscription = new Subscription(); 
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    // Feliratkozunk az AuthService-ben lévő isLoggedIn változásaira
+    this.authSubscription = this.authService.getIsLoggedIn().subscribe((status: boolean) => {
+      this.isLoggedIn = status;  // Ha változik, frissítjük az értéket
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Ne felejtsük el leiratkozni, hogy elkerüljük a memóriapazarlást
+    this.authSubscription.unsubscribe();
+  }
+
+
   countries = [
     'Magyarország', 'Németország', 'Franciaország', 'USA', 'Egyesült Királyság', 'Kanada', 'Spanyolország'
   ];
@@ -42,7 +62,16 @@ export class SearchComponent {
   displayedColumns: string[] = ['from', 'to', 'date', 'booking'];  // Itt adjuk meg az oszlopok nevét
 
   book(result: any) {
-    alert(`Lefoglaltad: ${result.from} -> ${result.to} (${result.date})`);
-    result.booking = true;
+    if (this.isLoggedIn) {
+      alert(`Lefoglaltad: ${result.from} -> ${result.to} (${result.date})`);
+      result.booking = true;
+    } else {
+      this.login();
+    }
   }
+
+  login() {
+    window.location.href = '/login';
+  }
+
 }

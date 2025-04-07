@@ -1,21 +1,30 @@
 <div class="login-container">
     <h2>Bejelentkezés</h2>
-  
-    <form>
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>E-mail cím</mat-label>
-        <input matInput type="email" placeholder="E-mail cím" required>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="full-width small-gap">
-        <mat-label>Jelszó</mat-label>
-        <input matInput type="password" placeholder="Jelszó" required>
-      </mat-form-field>
-  
-      <div class="button-group">
-        <button mat-raised-button color="primary">Bejelentkezés</button>
-        <button mat-stroked-button color="accent" routerLink="/signup">Regisztráció</button>
+
+    @if (isLoading) {
+      <div class="loading-container">
+        <h2>Betöltés folyamatban</h2>
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Kérlek várj...</p>
       </div>
-    </form>
-  </div>
+    }
   
+    @if (showLoginForm){
+      <form (ngSubmit)="login()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>E-mail cím</mat-label>
+          <input matInput type="email" [formControl]="email" name="email" required>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill" class="full-width small-gap">
+          <mat-label>Jelszó</mat-label>
+          <input matInput type="password" [formControl]="password" name="password" required>
+        </mat-form-field>
+      
+        <div class="button-group">
+          <button mat-raised-button color="primary" type="submit">Bejelentkezés</button>
+          <button mat-stroked-button color="accent" routerLink="/signup">Regisztráció</button>
+        </div>
+      </form>
+    }   
+  </div>

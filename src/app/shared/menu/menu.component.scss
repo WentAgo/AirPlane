@@ -1,54 +1,53 @@
-.menu {
-    background-color: #3f51b5;
-    color: white;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  li {
-    margin: 0 15px;
-  }
-  
+/* Menü alapelrendezés */
+mat-nav-list {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
   a {
-    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-  
-  a:hover {
-    color: #ff9800;
-  }
-  
-  @media (max-width: 768px) {
-    nav {
-      flex-direction: column;
-      align-items: flex-start;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f0f0f0;
     }
-  
-    ul {
-      flex-direction: column;
-      align-items: flex-start;
+
+    mat-icon {
+      margin-right: 12px;
+      font-size: 24px;
     }
-  
-    li {
-      margin: 10px 0;
+
+    span {
+      font-size: 16px;
     }
   }
+
+  .active-list-item {
+    background-color: #e0e0e0;
+  }
+}
+
+/* Menü szerkezet */
+.mat-nav-list {
+  margin-top: 60px; /* Ha szükséges, hogy a menü ne takarja el a tartalmat */
+}
+
+/* Záró gomb a menüben */
+.mat-nav-list a:last-child {
+  margin-top: auto; /* A logout vagy login gombot lent helyezni */
+}
+
+/* Animáció és átmenetek */
+a {
+  &:hover {
+    transition: background-color 0.2s ease;
+  }
+}
