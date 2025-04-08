@@ -3,13 +3,13 @@
     <div class="search-block">
       <h2>Keresés</h2>
   
-      <form>
+      <form (ngSubmit)="onSearchClick()">
         <div class="row">
           <mat-form-field appearance="fill" class="half-width">
             <mat-label>Honnan?</mat-label>
-            <mat-select placeholder="Válassz országot" required>
+            <mat-select [(ngModel)]="fromCountry" name="fromCountry" placeholder="Válassz országot" required>
               @for(country of countries; track $index){
-                <mat-option value="{{$index}}">
+                <mat-option value="{{country}}">
                 {{ country }}
               </mat-option>
             }
@@ -18,9 +18,9 @@
   
           <mat-form-field appearance="fill" class="half-width">
             <mat-label>Hova?</mat-label>
-            <mat-select placeholder="Válassz országot" required>
+            <mat-select  [(ngModel)]="toCountry" name="toCountry" placeholder="Válassz országot" required>
               @for(country of countries; track $index){
-                <mat-option value="{{$index}}">
+                <mat-option value="{{country}}">
                 {{ country }}
               </mat-option>
             }
@@ -31,23 +31,23 @@
         <div class="row">
           <mat-form-field appearance="fill" class="half-width">
             <mat-label>Mettől?</mat-label>
-            <input matInput [matDatepicker]="pickerFrom" placeholder="Válassz dátumot" required>
+            <input matInput [(ngModel)]="fromDate" name="fromDate" [matDatepicker]="pickerFrom" placeholder="Válassz dátumot" required>
             <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
             <mat-datepicker #pickerFrom></mat-datepicker>
           </mat-form-field>
   
           <mat-form-field appearance="fill" class="half-width">
             <mat-label>Meddig?</mat-label>
-            <input matInput [matDatepicker]="pickerTo" placeholder="Válassz dátumot" required>
+            <input matInput [(ngModel)]="toDate" name="toDate" [matDatepicker]="pickerTo" placeholder="Válassz dátumot" required>
             <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
             <mat-datepicker #pickerTo></mat-datepicker>
           </mat-form-field>
         </div>
   
-        <button mat-raised-button color="primary">Keresés</button>
+        <button mat-raised-button color="primary" type="submit">Keresés</button>
       </form>
 
-      <app-results [searchResults]="searchResults" [isLoggedIn]="isLoggedIn"></app-results>
+      <app-results [searchResults]="filteredResults" [isLoggedIn]="isLoggedIn"></app-results>
 
     </div>
   

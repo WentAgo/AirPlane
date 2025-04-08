@@ -10,8 +10,10 @@ import { PagenotfoundComponent } from './shared/pagenotfound/pagenotfound.compon
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { UppercasePipe } from './shared/pipes/uppercase.pipe';
+import { ToHufPipe } from './shared/pipes/to-huf.pipe';
 import { AuthService } from './shared/services/auth.service';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-root',
@@ -27,7 +29,9 @@ import { Subscription } from 'rxjs';
     MatSidenav,
     MatSidenavModule,
     MatToolbarModule,
-    UppercasePipe],
+    UppercasePipe,
+    FormsModule,
+    ToHufPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
