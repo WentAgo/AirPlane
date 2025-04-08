@@ -12,6 +12,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../shared/services/auth.service';
 import { Subscription } from 'rxjs';
+import { ResultsComponent } from './results/results.component';
 
 @Component({
   selector: 'app-search',
@@ -26,7 +27,8 @@ import { Subscription } from 'rxjs';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CommonModule],
+    CommonModule,
+    ResultsComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
@@ -53,21 +55,18 @@ export class SearchComponent {
     'Magyarország', 'Németország', 'Franciaország', 'USA', 'Egyesült Királyság', 'Kanada', 'Spanyolország'
   ];
 
+ 
   searchResults = [
     { from: 'Magyarország', to: 'Németország', date: '2025-04-15', booking: false },
     { from: 'Magyarország', to: 'Franciaország', date: '2025-04-20', booking: false },
     { from: 'USA', to: 'Kanada', date: '2025-05-10', booking: false }
   ];
+ 
 
   displayedColumns: string[] = ['from', 'to', 'date', 'booking'];  // Itt adjuk meg az oszlopok nevét
 
-  book(result: any) {
-    if (this.isLoggedIn) {
-      alert(`Lefoglaltad: ${result.from} -> ${result.to} (${result.date})`);
-      result.booking = true;
-    } else {
-      this.login();
-    }
+  performSearch() {
+    // A keresési logika, amely az eredményeket szűri és frissíti
   }
 
   login() {

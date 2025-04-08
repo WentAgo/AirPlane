@@ -1,49 +1,49 @@
 /* Foglalásaim komponens stílusai */
 .white-box {
-    max-width: 900px;
-    margin: 4rem auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-    h2 {
-      text-align: center;
-      color: #1976d2;
-      font-weight: 500;
-      margin-bottom: 2rem;
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #00bcd4; // primary - cyan
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  .results-block {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f9f9f9;
+      border-radius: 8px;
     }
-    
-    .results-block {
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-      }
-    
-      th, td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-    
-      th {
-        background-color: #1976d2;
-        color: white;
-        font-weight: bold;
-      }
-    
-      tr:hover {
-        background-color: #f1f1f1;
-      }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      color: #00bcd4;
     }
-  
-    /* Ha nincs foglalás */
-    ng-template#noBookings {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #888;
+
+    th {
+      background-color: #00bcd4; // primary
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #e0f7fa; // halvány cyan háttér hover-re
     }
   }
-  
+
+  /* Ha nincs foglalás */
+  ng-template#noBookings {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+  }
+}

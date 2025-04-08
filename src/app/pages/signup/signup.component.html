@@ -27,9 +27,11 @@
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Ország</mat-label>
         <mat-select placeholder="Válassz országot" required>
-          <mat-option *ngFor="let country of countries" [value]="country">
+          @for(country of countries; track $index){
+            <mat-option value="{{$index}}">
             {{ country }}
           </mat-option>
+        }
         </mat-select>
       </mat-form-field>
   

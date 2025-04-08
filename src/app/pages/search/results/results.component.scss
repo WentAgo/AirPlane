@@ -1,0 +1,36 @@
+/* Találatok oldal stílusai */
+.results-block {
+    h2 {
+      color: #00bcd4; // cyan
+      margin-bottom: 1.5rem;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+  
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        color: #00bcd4;
+      }
+  
+      th {
+        background-color: #00bcd4;
+        color: white;
+        font-weight: bold;
+      }
+  
+      tr:hover {
+        background-color: #e0f7fa;
+      }
+  
+      .mat-icon {
+        color: #00bcd4;
+      }
+    }
+  }
+  

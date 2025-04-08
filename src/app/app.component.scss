@@ -15,36 +15,56 @@ ul {
 
 a {
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   font-size: 25px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #ff9800; // accent (orange)
+  }
 }
 
 mat-sidenav-container {
   height: 100%;
 }
 
-mat-toolbar{
-  background-color: #005cbb;
+mat-toolbar {
+  background-color: #00bcd4; // primary (cyan)
   color: white;
+
   mat-icon {
-      color: white;
+    color: white;
   }
 }
 
 mat-sidenav {
   border-radius: 0;
+  background-color: #ffffff;
+
+  a {
+    color: #00bcd4; // primary
+
+    &:hover {
+      color: #ff9800; // accent
+    }
+  }
 }
 
 .menu-toggle-button {
   display: none;
+  color: #00bcd4;
+
+  &:hover {
+    color: #ff9800;
+  }
 }
 
 @media (max-width: 768px) {
   .menu-toggle-button {
-      display: block;
+    display: block;
   }
-  
+
   nav ul {
-      display: none;
+    display: none;
   }
 }
