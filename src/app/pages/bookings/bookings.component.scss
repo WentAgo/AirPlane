@@ -1,4 +1,3 @@
-/* Foglalásaim komponens stílusai */
 .white-box {
   max-width: 900px;
   margin: 4rem auto;
@@ -9,7 +8,7 @@
 
   h2 {
     text-align: center;
-    color: #00bcd4; // primary - cyan
+    color: #00bcd4;
     font-weight: 500;
     margin-bottom: 2rem;
   }
@@ -30,17 +29,16 @@
     }
 
     th {
-      background-color: #00bcd4; // primary
+      background-color: #00bcd4;
       color: white;
       font-weight: bold;
     }
 
     tr:hover {
-      background-color: #e0f7fa; // halvány cyan háttér hover-re
+      background-color: #e0f7fa;
     }
   }
 
-  /* Ha nincs foglalás */
   ng-template#noBookings {
     text-align: center;
     font-size: 1.2rem;

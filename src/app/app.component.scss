@@ -20,7 +20,7 @@ a {
   transition: color 0.3s ease;
 
   &:hover {
-    color: #ff9800; // accent (orange)
+    color: #ff9800;
   }
 }
 
@@ -29,7 +29,7 @@ mat-sidenav-container {
 }
 
 mat-toolbar {
-  background-color: #00bcd4; // primary (cyan)
+  background-color: #00bcd4;
   color: white;
 
   mat-icon {
@@ -42,10 +42,10 @@ mat-sidenav {
   background-color: #ffffff;
 
   a {
-    color: #00bcd4; // primary
+    color: #00bcd4;
 
     &:hover {
-      color: #ff9800; // accent
+      color: #ff9800;
     }
   }
 }

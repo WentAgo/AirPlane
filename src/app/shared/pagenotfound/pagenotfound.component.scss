@@ -1,4 +1,3 @@
-/* 404 oldal stílusai */
 .page-not-found-container {
   display: flex;
   flex-direction: column;
@@ -6,18 +5,18 @@
   justify-content: center;
   height: 100vh;
   text-align: center;
-  background-color: #e0f7fa; // világos cyan háttér
+  background-color: #e0f7fa;
   padding: 2rem;
 
   .error-icon {
     font-size: 100px;
-    color: #ff9800; // accent (orange)
+    color: #ff9800;
     margin-bottom: 1rem;
   }
 
   .error-title {
     font-size: 2.5rem;
-    color: #00bcd4; // primary (cyan)
+    color: #00bcd4;
     margin-bottom: 0.5rem;
     font-weight: 600;
   }

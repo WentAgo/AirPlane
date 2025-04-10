@@ -11,8 +11,8 @@ export class ToHufPipe implements PipeTransform {
     const [amount, currency] = value.split(' ');
 
     if (currency === '$' && showInHuf) {
-      const hufAmount = (parseFloat(amount) * 380).toFixed(0); // Átváltás forintra
-      return `${hufAmount} Ft`; // Visszaadjuk forintban
+      const hufAmount = (parseFloat(amount) * 380).toFixed(0);
+      return `${hufAmount} Ft`;
     }
 
     return value;

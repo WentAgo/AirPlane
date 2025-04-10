@@ -1,4 +1,3 @@
-/* Menü alapelrendezés */
 mat-nav-list {
   display: flex;
   flex-direction: column;
@@ -17,13 +16,13 @@ mat-nav-list {
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #e0f7fa; // világos cyan háttér
+      background-color: #e0f7fa;
     }
 
     mat-icon {
       margin-right: 12px;
       font-size: 24px;
-      color: #00bcd4; // cyan
+      color: #00bcd4;
     }
 
     span {
@@ -33,11 +32,11 @@ mat-nav-list {
   }
 
   .active-list-item {
-    background-color: #ffecb3; // világos orange
+    background-color: #ffecb3;
     font-weight: 500;
 
     mat-icon {
-      color: #ff9800; // accent
+      color: #ff9800;
     }
 
     span {
@@ -46,17 +45,14 @@ mat-nav-list {
   }
 }
 
-/* Menü szerkezet */
 .mat-nav-list {
   margin-top: 60px;
 }
 
-/* Záró gomb a menüben */
 .mat-nav-list a:last-child {
   margin-top: auto;
 }
 
-/* Animáció és átmenetek */
 a {
   &:hover {
     transition: background-color 0.2s ease;

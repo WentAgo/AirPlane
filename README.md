@@ -1,5 +1,7 @@
 # Repülőjegy lefoglaló oldal
 
+bejelentkezéshez: teszt@teszt.com 123456
+
 ## Development server
 
 To start a local development server, run:

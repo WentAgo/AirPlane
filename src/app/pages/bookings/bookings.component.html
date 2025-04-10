@@ -3,19 +3,17 @@
   
     <div class="results-block" *ngIf="bookings.length > 0; else noBookings">
       <table mat-table [dataSource]="bookings">
-        <!-- Honnan oszlop -->
+
         <ng-container matColumnDef="from">
           <th mat-header-cell *matHeaderCellDef> Honnan? </th>
           <td mat-cell *matCellDef="let booking"> {{ booking.from }} </td>
         </ng-container>
   
-        <!-- Hova oszlop -->
         <ng-container matColumnDef="to">
           <th mat-header-cell *matHeaderCellDef> Hova? </th>
           <td mat-cell *matCellDef="let booking"> {{ booking.to }} </td>
         </ng-container>
   
-        <!-- Mikor oszlop -->
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef> Mikor? </th>
           <td mat-cell *matCellDef="let booking"> {{ booking.date }} </td>
