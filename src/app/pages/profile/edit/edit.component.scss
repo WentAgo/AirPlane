@@ -1,0 +1,60 @@
+.edit-profile-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #00bcd4;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+
+      mat-form-field {
+        width: 48%;
+      }
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.5rem;
+
+      button {
+        width: 48%;
+        background-color: #00bcd4;
+        color: white;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken(#00bcd4, 10%);
+        }
+
+        &:nth-child(2) {
+          background-color: #ff9800;
+          &:hover {
+            background-color: darken(#ff9800, 10%);
+          }
+        }
+      }
+    }
+  }
+}

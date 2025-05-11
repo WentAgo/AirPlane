@@ -40,6 +40,7 @@
 
         &:hover {
           background-color: darken(#00bcd4, 10%);
+          transform: scale(1.05);
         }
       }
     }

@@ -1,5 +1,5 @@
-import { Component} from '@angular/core';
-import { RouterLink} from '@angular/router';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
@@ -22,23 +22,28 @@ import { Subscription } from 'rxjs';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
 })
-export class MenuComponent {
-  isLoggedIn: boolean = false;
-  private authSubscription: Subscription = new Subscription(); 
+export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() isLoggedIn: boolean = false;
+  @Output() logoutEvent = new EventEmitter<void>();
+  private authSubscription: Subscription = new Subscription();
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.getIsLoggedIn().subscribe((status: boolean) => {
-      this.isLoggedIn = status;
-    });
+    console.log("ngOnInit called");
   }
+
+  ngAfterViewInit(): void {
+    console.log("ngAfterViewInit called");
+  }
+
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+    this.authSubscription?.unsubscribe();
   }
 
   logout() {
-    this.authService.setIsLoggedIn(false);
-    window.location.href = '/search';
+    this.authService.signOut().then(() => {
+      this.logoutEvent.emit();
+    });
   }
 }

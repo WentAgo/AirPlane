@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AirPlane": {
+    "airplane": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "AirPlane:build:production"
+              "buildTarget": "airplane:build:production"
             },
             "development": {
-              "buildTarget": "AirPlane:build:development"
+              "buildTarget": "airplane:build:development"
             }
           },
           "defaultConfiguration": "development"

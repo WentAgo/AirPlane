@@ -1,0 +1,57 @@
+<div class="edit-profile-container">
+  <h2>Profil szerkesztése</h2>
+
+  <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="saveProfile()">
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Keresztnév</mat-label>
+        <input matInput formControlName="firstname" placeholder="Keresztnév" required>
+        @if (editForm.get('firstname')?.invalid && editForm.get('firstname')?.touched) {
+          <mat-error>A keresztnév nem lehet üres.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Vezetéknév</mat-label>
+        <input matInput formControlName="lastname" placeholder="Vezetéknév" required>
+        @if (editForm.get('lastname')?.invalid && editForm.get('lastname')?.touched) {
+          <mat-error>A vezetéknév nem lehet üres.</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>E-mail cím (bejelentkezéshez továbbra is a regisztrációkor megadott e-mail címet kell megadni)</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="E-mail" required>
+      @if (editForm.get('email')?.invalid && editForm.get('email')?.touched) {
+        <mat-error>Kérjük adj meg egy érvényes email címet.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Telefonszám</mat-label>
+      <input matInput type="tel" formControlName="phone" placeholder="+36...">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Születési dátum</mat-label>
+      <input matInput [matDatepicker]="birthPicker" formControlName="birthDate" placeholder="Válassz dátumot">
+      <mat-datepicker-toggle matSuffix [for]="birthPicker"></mat-datepicker-toggle>
+      <mat-datepicker #birthPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nem</mat-label>
+      <mat-select formControlName="gender" placeholder="Válassz nemet">
+        <mat-option value="férfi">Férfi</mat-option>
+        <mat-option value="nő">Nő</mat-option>
+        <mat-option value="egyéb">Egyéb</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit">Mentés</button>
+      <button mat-stroked-button color="accent" (click)="goBack()">Vissza</button>
+    </div>
+  </form>
+</div>

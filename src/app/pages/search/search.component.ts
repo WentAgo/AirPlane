@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 import { ResultsComponent } from './results/results.component';
 import { FormsModule } from '@angular/forms';
 import { searchResults } from '../../shared/search-data';
+import {User} from '../../shared/models/User';
 
 @Component({
   selector: 'app-search',
@@ -34,16 +35,14 @@ import { searchResults } from '../../shared/search-data';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   private authSubscription: Subscription = new Subscription();
   searchResults = searchResults;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.getIsLoggedIn().subscribe((status: boolean) => {
-      this.isLoggedIn = status;
-    });
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   }
 
   ngOnDestroy(): void {

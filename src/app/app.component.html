@@ -1,4 +1,7 @@
 <mat-sidenav-container>
+   <mat-sidenav #sidenav>
+    <app-menu  [isLoggedIn]="isLoggedIn" (logoutEvent)="logout()"></app-menu>
+  </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar>
         <nav>

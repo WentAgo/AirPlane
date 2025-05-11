@@ -6,6 +6,7 @@ import { UppercasePipe } from './shared/pipes/uppercase.pipe';
 import { AuthService } from './shared/services/auth.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms'; 
+import { MenuComponent } from './shared/menu/menu.component';
 
 @Component({
   selector: 'app-root',
@@ -14,31 +15,31 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatToolbarModule,
     UppercasePipe,
-    FormsModule],
+    FormsModule,
+    MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'AirPlane';
-  isLoggedIn: boolean = false;
-  private authSubscription: Subscription = new Subscription();
+  isLoggedIn = false; 
+  private authSubscription?: Subscription;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.getIsLoggedIn().subscribe((status: boolean) => {
-      this.isLoggedIn = status;
+    this.authSubscription = this.authService.currentUser.subscribe(user => {
+      this.isLoggedIn = !!user;
+      localStorage.setItem('isLoggedIn', this.isLoggedIn ? 'true' : 'false');
     });
   }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+    this.authSubscription?.unsubscribe();
   }
 
   logout(): void {
-    localStorage.setItem('isLoggedIn', 'false');
-    this.authService.setIsLoggedIn(false);
-    window.location.href = '/search';
+    this.authService.signOut();
   }
   onToggleSidenav(sidenav: MatSidenav){
     sidenav.toggle();

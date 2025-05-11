@@ -1,54 +1,73 @@
 <div class="signup-container">
-    <h2>Regisztráció</h2>
-  
-    <form>
-      <div class="row">
-        <mat-form-field appearance="fill" class="half-width">
-          <mat-label>Keresztnév</mat-label>
-          <input matInput placeholder="Keresztnév" required>
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill" class="half-width">
-          <mat-label>Vezetéknév</mat-label>
-          <input matInput placeholder="Vezetéknév" required>
-        </mat-form-field>
-      </div>
-  
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>E-mail cím</mat-label>
-        <input matInput type="email" placeholder="E-mail cím" required>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Telefonszám</mat-label>
-        <input matInput type="tel" placeholder="+36..." required>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Ország</mat-label>
-        <mat-select placeholder="Válassz országot" required>
-          @for(country of countries; track $index){
-            <mat-option value="{{$index}}">
-            {{ country }}
-          </mat-option>
+  <h2>Regisztráció</h2>
+
+  <form [formGroup]="signUpForm" (ngSubmit)="signup()">
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Keresztnév</mat-label>
+        <input matInput formControlName="firstname" placeholder="Keresztnév" required>
+        @if (signUpForm.get('firstname')?.invalid && signUpForm.get('firstname')?.touched) {
+        <mat-error>A keresztnévnek legalább 2 karakter hosszúnak kell lennie.</mat-error>
         }
-        </mat-select>
       </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Jelszó</mat-label>
-        <input matInput type="password" placeholder="Jelszó" required>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Vezetéknév</mat-label>
+        <input matInput formControlName="lastname" placeholder="Vezetéknév" required>
+        @if (signUpForm.get('lastname')?.invalid && signUpForm.get('lastname')?.touched) {
+        <mat-error>A vezetéknévnek legalább 2 karakter hosszúnak kell lennie.</mat-error>
+        }
       </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Jelszó megismétlése</mat-label>
-        <input matInput type="password" placeholder="Jelszó ismét" required>
-      </mat-form-field>
-  
-      <div class="button-row">
-        <button mat-raised-button color="primary">Regisztráció</button>
-        <button mat-stroked-button color="accent" routerLink="/search">Vissza</button>
-      </div>
-    </form>
-  </div>
-  
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>E-mail cím</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="E-mail cím" required>
+      @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+      <mat-error>Kérjük adj meg egy érvényes email címet.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Telefonszám</mat-label>
+      <input matInput type="tel" formControlName="phone" placeholder="+36..." required>
+    </mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Születési dátum</mat-label>
+  <input matInput [matDatepicker]="birthPicker" formControlName="birthDate" placeholder="Válassz dátumot" required>
+  <mat-datepicker-toggle matSuffix [for]="birthPicker"></mat-datepicker-toggle>
+  <mat-datepicker #birthPicker></mat-datepicker>
+</mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nem</mat-label>
+      <mat-select formControlName="gender" placeholder="Válassz nemet">
+        <mat-option value="male">Férfi</mat-option>
+        <mat-option value="female">Nő</mat-option>
+        <mat-option value="other">Egyéb</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Jelszó</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="Jelszó" required>
+      @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched) {
+      <mat-error>A jelszónak legalább 6 karakter hosszúnak kell lennie.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Jelszó megismétlése</mat-label>
+      <input matInput type="password" formControlName="rePassword" placeholder="Jelszó ismét" required>
+      @if (signUpForm.get('rePassword')?.value !== signUpForm.get('password')?.value) {
+      <mat-error>A jelszavak nem egyeznek.</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit">Regisztráció</button>
+      <button mat-stroked-button color="accent" routerLink="/search">Vissza</button>
+    </div>
+  </form>
+</div>
