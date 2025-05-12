@@ -23,8 +23,9 @@ import { Flight } from '../../shared/models/Flight';
 })
 export class BookingsComponent implements OnInit {
 
-  displayedColumns: string[] = ['from', 'to', 'date'];
+  displayedColumns: string[] = ['from', 'to', 'date', 'delete'];
   bookings: Flight[] = [];
+    isLoading: boolean = false;
 
   constructor(
     private bookingsService: BookingsService,
@@ -35,4 +36,18 @@ export class BookingsComponent implements OnInit {
     const userId = await this.authService.getUserId(); // már async metódus
     this.bookings = await this.bookingsService.getUserBookings(userId);
   }
+  
+async confirmDelete(booking: Flight) {
+  const confirmed = window.confirm(`Biztosan törölni szeretnéd ezt a foglalást?\n\n${booking.from} → ${booking.to} (${booking.date})`);
+  if (confirmed && booking.id) {
+    try {
+      await this.bookingsService.deleteBooking(booking.id);
+      this.bookings = this.bookings.filter(b => b.id !== booking.id);
+      console.log('Törlés sikeres');
+    } catch (error) {
+      console.error('Hiba történt a törlés közben:', error);
+    }
+  }
+}
+
 }
