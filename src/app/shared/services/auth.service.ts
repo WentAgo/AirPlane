@@ -8,13 +8,12 @@ import {
   User,
   UserCredential
 } from '@angular/fire/auth';
-import { 
-  Firestore, 
-  collection, 
-  doc, 
-  setDoc 
+import {
+  Firestore,
+  doc,
+  setDoc
 } from '@angular/fire/firestore';
-import { Observable, firstValueFrom} from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -22,7 +21,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   currentUser: Observable<User | null>;
-  
+
   constructor(
     private auth: Auth,
     private router: Router,
@@ -30,11 +29,11 @@ export class AuthService {
   ) {
     this.currentUser = authState(this.auth);
   }
-  
+
   signIn(email: string, password: string): Promise<UserCredential> {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
-  
+
   signOut(): Promise<void> {
     localStorage.setItem('isLoggedIn', 'false');
     return signOut(this.auth).then(() => {
@@ -45,7 +44,7 @@ export class AuthService {
   async signUp(email: string, password: string, userData: any): Promise<UserCredential> {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-      
+
       await this.createUserData(userCredential.user.uid, {
         ...userData,
         id: userCredential.user.uid
@@ -58,12 +57,12 @@ export class AuthService {
     }
   }
 
-    private async createUserData(uid: string, data: any): Promise<void> {
+  private async createUserData(uid: string, data: any): Promise<void> {
     const userDoc = doc(this.firestore, `users/${uid}`);
     await setDoc(userDoc, data);
   }
 
-   async getUserId(): Promise<string> {
+  async getUserId(): Promise<string> {
     const user = await firstValueFrom(authState(this.auth));
     if (user) {
       return user.uid;
@@ -71,7 +70,7 @@ export class AuthService {
       throw new Error('Nincs bejelentkezett felhasználó.');
     }
   }
-  
+
   isLoggedIn(): Observable<User | null> {
     return this.currentUser;
   }

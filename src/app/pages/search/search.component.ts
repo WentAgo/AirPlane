@@ -1,17 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
-import { BookingsService } from '../../shared/services/booking.service';
+import { BookingService } from '../../shared/services/booking.service';
 import { Flight } from '../../shared/models/Flight';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule} from '@angular/material/select';
-import { MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule} from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { ResultsComponent } from './results/results.component';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
   standalone: true,
-   imports: [
+  imports: [
     MatCardModule,
     MatButtonModule,
     MatTableModule,
@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   fromDate: Date | null = null;
   toDate: Date | null = null;
 
-countries = [
+  countries = [
     'Magyarország', 'Németország', 'Franciaország', 'Olaszország', 'Egyesült Királyság', 'Japán', 'Amerikai Egyesült Államok', 'Ausztrália'
   ];
 
@@ -57,14 +57,13 @@ countries = [
 
   constructor(
     private authService: AuthService,
-    private bookingsService: BookingsService
-  ) {}
+    private bookingService: BookingService
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-    // Járatok lekérése Firestore-ból
-    this.flightsSubscription = this.bookingsService.getAllFlights().subscribe((flights) => {
+    this.flightsSubscription = this.bookingService.getAllFlights().subscribe((flights) => {
       this.searchResults = flights;
       this.filteredResults = flights;
     });

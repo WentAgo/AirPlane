@@ -1,34 +1,32 @@
 <div class="white-box">
   <h2>Foglalásaim</h2>
-  <div class="filter-section">
-    <!-- Dátum szűrés -->
+
+  <form class="filter-section" (ngSubmit)="onFilter()" #filterForm="ngForm">
     <div class="date-row">
       <div>
         <label for="startDate">Kezdő Dátum:</label>
-        <input id="startDate" type="date" [(ngModel)]="startDate">
+        <input id="startDate" type="date" name="startDate" [(ngModel)]="startDate">
       </div>
       <div>
         <label for="endDate">Befejező Dátum:</label>
-        <input id="endDate" type="date" [(ngModel)]="endDate">
+        <input id="endDate" type="date" name="endDate" [(ngModel)]="endDate">
       </div>
     </div>
 
-    <!-- Ország szűrés -->
     <div class="location-row">
       <div>
         <label for="from">Országból:</label>
-        <input id="from" type="text" [(ngModel)]="from">
+        <input id="from" type="text" name="from" [(ngModel)]="from">
       </div>
       <div>
         <label for="to">Országig:</label>
-        <input id="to" type="text" [(ngModel)]="to">
+        <input id="to" type="text" name="to" [(ngModel)]="to">
       </div>
     </div>
 
-    <button mat-button (click)="onFilter()">Szűrés</button>
-  </div>
+    <button mat-button type="submit">Szűrés</button>
+  </form>
 
-  <!-- Foglalások táblázat -->
   <div class="results-block" *ngIf="bookings.length > 0; else noBookings">
     <table mat-table [dataSource]="bookings">
       <ng-container matColumnDef="from">

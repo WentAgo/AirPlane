@@ -5,7 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { UppercasePipe } from './shared/pipes/uppercase.pipe';
 import { AuthService } from './shared/services/auth.service';
 import { Subscription } from 'rxjs';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './shared/menu/menu.component';
 
 @Component({
@@ -22,10 +22,10 @@ import { MenuComponent } from './shared/menu/menu.component';
 })
 export class AppComponent {
   title = 'AirPlane';
-  isLoggedIn = false; 
+  isLoggedIn = false;
   private authSubscription?: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.currentUser.subscribe(user => {
@@ -41,7 +41,7 @@ export class AppComponent {
   logout(): void {
     this.authService.signOut();
   }
-  onToggleSidenav(sidenav: MatSidenav){
+  onToggleSidenav(sidenav: MatSidenav) {
     sidenav.toggle();
   }
 }

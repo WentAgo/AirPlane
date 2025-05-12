@@ -1,36 +1,37 @@
 <mat-sidenav-container>
-   <mat-sidenav #sidenav>
-    <app-menu  [isLoggedIn]="isLoggedIn" (logoutEvent)="logout()"></app-menu>
+  <mat-sidenav #sidenav>
+    <app-menu [isLoggedIn]="isLoggedIn" (logoutEvent)="logout()"></app-menu>
   </mat-sidenav>
-    <mat-sidenav-content>
-      <mat-toolbar>
-        <nav>
-          <ul>
-            <li><a routerLink="/search">{{'Keresés' | uppercase}}</a></li>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <nav>
+        <ul>
+          <li><a routerLink="/search">{{'Keresés' | uppercase}}</a></li>
 
-            @if (isLoggedIn) {
-              <li><a routerLink="/profile">{{'Profil' | uppercase}}</a></li>
-            }
+          @if (isLoggedIn) {
+          <li><a routerLink="/profile">{{'Profil' | uppercase}}</a></li>
+          }
 
-            @if (isLoggedIn) {
-                <li><a routerLink="/bookings">{{'Foglalásaim' | uppercase}}</a></li>
-              }
+          @if (isLoggedIn) {
+          <li><a routerLink="/bookings">{{'Foglalásaim' | uppercase}}</a></li>
+          }
 
-            @if (isLoggedIn) {
-                <li><a routerLink="/search" (click)="$event.preventDefault(); logout()">{{'Kijelentkezés' | uppercase}}</a></li>
-              }
-            
-            @if (!isLoggedIn) {
-              <li><a routerLink="/login">{{'Bejelentkezés' | uppercase}}</a></li>
-            }
+          @if (isLoggedIn) {
+          <li><a routerLink="/search" (click)="$event.preventDefault(); logout()">{{'Kijelentkezés' | uppercase}}</a>
+          </li>
+          }
 
-            @if (!isLoggedIn) {
-                <li><a routerLink="/signup">{{'Regisztráció' | uppercase}}</a></li>
-              }
-            
-          </ul>
-        </nav>
-      </mat-toolbar>
-      <router-outlet />
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+          @if (!isLoggedIn) {
+          <li><a routerLink="/login">{{'Bejelentkezés' | uppercase}}</a></li>
+          }
+
+          @if (!isLoggedIn) {
+          <li><a routerLink="/signup">{{'Regisztráció' | uppercase}}</a></li>
+          }
+
+        </ul>
+      </nav>
+    </mat-toolbar>
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -33,19 +33,19 @@
       <input matInput type="tel" formControlName="phone" placeholder="+36..." required>
     </mat-form-field>
 
-<mat-form-field appearance="fill" class="full-width">
-  <mat-label>Születési dátum</mat-label>
-  <input matInput [matDatepicker]="birthPicker" formControlName="birthDate" placeholder="Válassz dátumot" required>
-  <mat-datepicker-toggle matSuffix [for]="birthPicker"></mat-datepicker-toggle>
-  <mat-datepicker #birthPicker></mat-datepicker>
-</mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Születési dátum</mat-label>
+      <input matInput [matDatepicker]="birthPicker" formControlName="birthDate" placeholder="Válassz dátumot" required>
+      <mat-datepicker-toggle matSuffix [for]="birthPicker"></mat-datepicker-toggle>
+      <mat-datepicker #birthPicker></mat-datepicker>
+    </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Nem</mat-label>
       <mat-select formControlName="gender" placeholder="Válassz nemet">
-        <mat-option value="male">Férfi</mat-option>
-        <mat-option value="female">Nő</mat-option>
-        <mat-option value="other">Egyéb</mat-option>
+        <mat-option value="Férfi">Férfi</mat-option>
+        <mat-option value="Nő">Nő</mat-option>
+        <mat-option value="Egyéb">Egyéb</mat-option>
       </mat-select>
     </mat-form-field>
 

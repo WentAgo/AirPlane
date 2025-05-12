@@ -1,31 +1,30 @@
-
-  <mat-nav-list>
-    <a mat-list-item routerLink="/search">
-      <span matListItemTitle>{{'Keresés' | uppercase}}</span>
-    </a>
-    @if (isLoggedIn) {
-      <a mat-list-item routerLink="/profile">
-        <span matListItemTitle>{{'Profil' | uppercase}}</span>
-      </a>
-    }
-    @if (isLoggedIn) {
-      <a mat-list-item routerLink="/bookings">
-        <span matListItemTitle>{{'Foglalásaim' | uppercase}}</span>
-      </a>
-    }
-    @if (isLoggedIn) {
-      <a mat-list-item routerLink="/search"(click)="logout()">
-        <span matListItemTitle>{{'Kijelentkezés' | uppercase}}</span>
-      </a>
-    }
-    @if (!isLoggedIn) {
-      <a mat-list-item routerLink="/login">
-        <span matListItemTitle>{{'Bejelentkezés' | uppercase}}</span>
-      </a>
-    }
-    @if (!isLoggedIn) {
-      <a mat-list-item routerLink="/signup">
-        <span matListItemTitle>{{'Regisztráció' | uppercase}}</span>
-      </a>
-    }
-  </mat-nav-list>
+<mat-nav-list>
+  <a mat-list-item routerLink="/search">
+    <span matListItemTitle>{{'Keresés' | uppercase}}</span>
+  </a>
+  @if (isLoggedIn) {
+  <a mat-list-item routerLink="/profile">
+    <span matListItemTitle>{{'Profil' | uppercase}}</span>
+  </a>
+  }
+  @if (isLoggedIn) {
+  <a mat-list-item routerLink="/bookings">
+    <span matListItemTitle>{{'Foglalásaim' | uppercase}}</span>
+  </a>
+  }
+  @if (isLoggedIn) {
+  <a mat-list-item routerLink="/search" (click)="logout()">
+    <span matListItemTitle>{{'Kijelentkezés' | uppercase}}</span>
+  </a>
+  }
+  @if (!isLoggedIn) {
+  <a mat-list-item routerLink="/login">
+    <span matListItemTitle>{{'Bejelentkezés' | uppercase}}</span>
+  </a>
+  }
+  @if (!isLoggedIn) {
+  <a mat-list-item routerLink="/signup">
+    <span matListItemTitle>{{'Regisztráció' | uppercase}}</span>
+  </a>
+  }
+</mat-nav-list>

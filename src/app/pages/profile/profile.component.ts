@@ -27,8 +27,8 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
-  user: User | null = null;  // Felhasználói adatok
-  isLoading = true;          // Betöltés állapota
+  user: User | null = null;
+  isLoading = true;
   private subscription: Subscription | null = null;
 
   constructor(
@@ -63,7 +63,6 @@ export class ProfileComponent implements OnInit {
     const userDocRef = doc(this.firestore, 'users', uid);
     getDoc(userDocRef).then((docSnap) => {
       if (docSnap.exists()) {
-        // A Firestore adatokat betöltjük és beállítjuk a 'user' változóba
         this.user = docSnap.data() as User;
         this.isLoading = false;
       } else {
@@ -73,10 +72,8 @@ export class ProfileComponent implements OnInit {
     });
   }
   getUserInitials(): string {
-    // Ha nincs felhasználó, akkor '?' visszaadása
     if (!this.user) return '?';
 
-    // Az első és utolsó névből visszaadjuk az első betűt
     const firstInitial = this.user.firstname ? this.user.firstname.charAt(0).toUpperCase() : '';
     const lastInitial = this.user.lastname ? this.user.lastname.charAt(0).toUpperCase() : '';
 
@@ -84,14 +81,14 @@ export class ProfileComponent implements OnInit {
   }
 
   getSafeString(value: string | undefined): string {
-    return value || 'N/A';  // Ha undefined, akkor alapértelmezett értéket adunk vissza
+    return value || 'N/A';
   }
 
 
   formatBirthDate(birthDate: Timestamp | undefined): string {
     if (!birthDate) return '';
-    const dateObj = birthDate.toDate(); // Timestamp -> Date
-    return formatDate(dateObj, 'yyyy. MMMM d.', 'en-US'); // vagy 'hu-HU' nyelv szerint
+    const dateObj = birthDate.toDate();
+    return formatDate(dateObj, 'yyyy. MMMM d.', 'en-US');
   }
 
   goToEdit(): void {

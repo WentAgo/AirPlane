@@ -29,26 +29,23 @@ export class UserService {
     );
   }
 
-fetchUser(uid: string): Promise<{ user: User }> {
-  const docRef = doc(this.firestore, `users/${uid}`);
-  return getDoc(docRef).then(snapshot => {
-    const data = snapshot.data() as User;
-    return this.ngZone.run(() => ({ user: data })); // <-- fontos!
-  });
-}
-
- updateUser(updatedUser: User): Observable<void> {
-  // Ellenőrizzük, hogy az updatedUser.uid érvényes és nem undefined
-  if (!updatedUser.uid || typeof updatedUser.uid !== 'string') {
-    console.error('Az UID nem található vagy nem string típusú');
-    return throwError('Az UID nem található vagy nem string típusú');
+  fetchUser(uid: string): Promise<{ user: User }> {
+    const docRef = doc(this.firestore, `users/${uid}`);
+    return getDoc(docRef).then(snapshot => {
+      const data = snapshot.data() as User;
+      return this.ngZone.run(() => ({ user: data }));
+    });
   }
 
-  // Firestore dokumentum referencia a felhasználóhoz
-  const userDocRef = doc(this.firestore, 'users', updatedUser.uid);
+  updateUser(updatedUser: User): Observable<void> {
+    if (!updatedUser.uid || typeof updatedUser.uid !== 'string') {
+      console.error('Az UID nem található vagy nem string típusú');
+      return throwError('Az UID nem található vagy nem string típusú');
+    }
 
-  // A felhasználó adatainak frissítése a Firestore-ban
-  return from(setDoc(userDocRef, updatedUser));
-}
+    const userDocRef = doc(this.firestore, 'users', updatedUser.uid);
+
+    return from(setDoc(userDocRef, updatedUser));
+  }
 
 }

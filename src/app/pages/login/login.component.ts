@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router, RouterLink} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -35,16 +35,16 @@ export class LoginComponent implements OnDestroy {
   authSubscription?: Subscription;
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   login() {
     if (this.email.invalid) {
       this.loginError = 'Please enter a valid email address';
       return;
     }
-    
+
     if (this.password.invalid) {
       this.loginError = 'Password must be at least 6 characters long';
       return;
@@ -52,7 +52,7 @@ export class LoginComponent implements OnDestroy {
 
     const emailValue = this.email.value || '';
     const passwordValue = this.password.value || '';
-    
+
     this.isLoading = true;
     this.showLoginForm = false;
     this.loginError = '';
@@ -67,8 +67,8 @@ export class LoginComponent implements OnDestroy {
         console.error('Login error:', error);
         this.isLoading = false;
         this.showLoginForm = true;
-        
-        switch(error.code) {
+
+        switch (error.code) {
           case 'auth/user-not-found':
             this.loginError = 'No account found with this email address';
             break;

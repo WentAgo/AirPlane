@@ -7,7 +7,7 @@
         <mat-label>Keresztnév</mat-label>
         <input matInput formControlName="firstname" placeholder="Keresztnév" required>
         @if (editForm.get('firstname')?.invalid && editForm.get('firstname')?.touched) {
-          <mat-error>A keresztnév nem lehet üres.</mat-error>
+        <mat-error>A keresztnév nem lehet üres.</mat-error>
         }
       </mat-form-field>
 
@@ -15,16 +15,17 @@
         <mat-label>Vezetéknév</mat-label>
         <input matInput formControlName="lastname" placeholder="Vezetéknév" required>
         @if (editForm.get('lastname')?.invalid && editForm.get('lastname')?.touched) {
-          <mat-error>A vezetéknév nem lehet üres.</mat-error>
+        <mat-error>A vezetéknév nem lehet üres.</mat-error>
         }
       </mat-form-field>
     </div>
 
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>E-mail cím (bejelentkezéshez továbbra is a regisztrációkor megadott e-mail címet kell megadni)</mat-label>
+      <mat-label>E-mail cím (bejelentkezéshez továbbra is a regisztrációkor megadott e-mail címet kell
+        megadni)</mat-label>
       <input matInput type="email" formControlName="email" placeholder="E-mail" required>
       @if (editForm.get('email')?.invalid && editForm.get('email')?.touched) {
-        <mat-error>Kérjük adj meg egy érvényes email címet.</mat-error>
+      <mat-error>Kérjük adj meg egy érvényes email címet.</mat-error>
       }
     </mat-form-field>
 

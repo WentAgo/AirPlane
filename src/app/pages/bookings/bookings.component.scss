@@ -8,7 +8,7 @@
 
   h2 {
     text-align: center;
-    color: #00bcd4; 
+    color: #00bcd4;
     font-weight: 500;
     margin-bottom: 3rem;
   }
@@ -24,9 +24,8 @@
     flex-direction: column;
     gap: 1rem;
 
-    /* Két dátum mezőt egymás mellé rakni */
     .date-row {
-      display:inline-block;
+      display: inline-block;
       justify-content: last baseline;
       gap: 1.5rem;
     }
@@ -47,10 +46,9 @@
       margin-bottom: 15px;
     }
 
-    /* Ország mezők elrendezése */
     .location-row {
       display: inline-block;
-      justify-content:last baseline;
+      justify-content: last baseline;
       gap: 1.5rem;
     }
 
@@ -82,7 +80,8 @@
       border-radius: 8px;
     }
 
-    th, td {
+    th,
+    td {
       padding: 12px;
       text-align: left;
       border-bottom: 1px solid #ddd;
