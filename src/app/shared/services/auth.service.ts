@@ -14,7 +14,7 @@ import {
   doc, 
   setDoc 
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom} from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -61,6 +61,15 @@ export class AuthService {
     private async createUserData(uid: string, data: any): Promise<void> {
     const userDoc = doc(this.firestore, `users/${uid}`);
     await setDoc(userDoc, data);
+  }
+
+   async getUserId(): Promise<string> {
+    const user = await firstValueFrom(authState(this.auth));
+    if (user) {
+      return user.uid;
+    } else {
+      throw new Error('Nincs bejelentkezett felhasználó.');
+    }
   }
   
   isLoggedIn(): Observable<User | null> {
