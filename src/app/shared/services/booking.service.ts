@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, query, where, getDocs, addDoc, collectionData, doc, getDoc, deleteDoc, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, query, where, getDocs, addDoc, collectionData, doc, getDoc, deleteDoc, setDoc, orderBy } from '@angular/fire/firestore';
 import { Flight } from '../models/Flight';
 import { Booking } from '../models/Booking';
 import { Observable } from 'rxjs';
@@ -73,4 +73,55 @@ async getUserBookings(userId: string): Promise<Flight[]> {
     throw new Error('A törlés nem sikerült.');
   }
 }
+async getFilteredBookings(userId: string, startDate: string, endDate: string, from: string, to: string): Promise<Flight[]> {
+  const bookingsRef = collection(this.firestore, 'bookings');
+  
+  // Kezdeti lekérdezés - csak a userId-t szűrjük
+  let q = query(bookingsRef, where('userId', '==', userId));
+
+  // Lekérdezzük a bookings dokumentumokat
+  const querySnapshot = await getDocs(q);
+  console.log('Szűrt foglalások:', querySnapshot.docs);
+  
+  const flights: Flight[] = [];
+
+  // Minden foglalás dokumentum adatainak feldolgozása
+  for (const docSnap of querySnapshot.docs) {
+    const bookingData = docSnap.data() as Booking;
+
+    // A foglalás flightId-jának alapján lekérdezzük a flight adatokat
+    const flightDocRef = doc(this.firestore, 'flights', bookingData.flightId);
+    const flightDocSnap = await getDoc(flightDocRef);
+
+    if (flightDocSnap.exists()) {
+      const flight = flightDocSnap.data() as Flight;
+
+      // Ha van kezdő dátum, szűrjük le
+      if (startDate && flight.date < startDate) {
+        continue; // Ha a flight dátuma korábbi, ugorjuk át
+      }
+
+      // Ha van befejező dátum, szűrjük le
+      if (endDate && flight.date > endDate) {
+        continue; // Ha a flight dátuma későbbi, ugorjuk át
+      }
+
+      // Ha van "from" mező, szűrjük le
+      if (from && flight.from !== from) {
+        continue; // Ha nem egyezik a "from" érték, ugorjuk át
+      }
+
+      // Ha van "to" mező, szűrjük le
+      if (to && flight.to !== to) {
+        continue; // Ha nem egyezik a "to" érték, ugorjuk át
+      }
+
+      flight.id = docSnap.id; // Hozzáadjuk a foglalás id-ját a flight-hoz
+      flights.push(flight); // Hozzáadjuk a flight-ot az eredményhez
+    }
+  }
+
+  return flights;  // Visszaadjuk a szűrt adatokat
+}
+
 }

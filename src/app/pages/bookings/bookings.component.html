@@ -1,9 +1,36 @@
 <div class="white-box">
   <h2>Foglalásaim</h2>
+  <div class="filter-section">
+    <!-- Dátum szűrés -->
+    <div class="date-row">
+      <div>
+        <label for="startDate">Kezdő Dátum:</label>
+        <input id="startDate" type="date" [(ngModel)]="startDate">
+      </div>
+      <div>
+        <label for="endDate">Befejező Dátum:</label>
+        <input id="endDate" type="date" [(ngModel)]="endDate">
+      </div>
+    </div>
 
+    <!-- Ország szűrés -->
+    <div class="location-row">
+      <div>
+        <label for="from">Országból:</label>
+        <input id="from" type="text" [(ngModel)]="from">
+      </div>
+      <div>
+        <label for="to">Országig:</label>
+        <input id="to" type="text" [(ngModel)]="to">
+      </div>
+    </div>
+
+    <button mat-button (click)="onFilter()">Szűrés</button>
+  </div>
+
+  <!-- Foglalások táblázat -->
   <div class="results-block" *ngIf="bookings.length > 0; else noBookings">
     <table mat-table [dataSource]="bookings">
-
       <ng-container matColumnDef="from">
         <th mat-header-cell *matHeaderCellDef> Honnan? </th>
         <td mat-cell *matCellDef="let booking"> {{ booking.from }} </td>

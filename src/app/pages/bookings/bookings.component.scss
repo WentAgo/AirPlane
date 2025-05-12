@@ -8,12 +8,73 @@
 
   h2 {
     text-align: center;
-    color: #00bcd4;
+    color: #00bcd4; 
     font-weight: 500;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .filter-section {
+    margin-bottom: 20px;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    /* Két dátum mezőt egymás mellé rakni */
+    .date-row {
+      display:inline-block;
+      justify-content: last baseline;
+      gap: 1.5rem;
+    }
+
+    label {
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      width: 100%;
+      max-width: 300px;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    /* Ország mezők elrendezése */
+    .location-row {
+      display: inline-block;
+      justify-content:last baseline;
+      gap: 1.5rem;
+    }
+
+    button {
+      padding: 0.7rem 2rem;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      align-self: center;
+
+      &:hover {
+        background-color: darken(#00bcd4, 10%);
+        transform: scale(1.05);
+      }
+    }
   }
 
   .results-block {
+    margin-top: 2rem;
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -36,6 +97,19 @@
 
     tr:hover {
       background-color: #e0f7fa;
+    }
+
+    button {
+      background-color: transparent;
+      color: #e57373;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      transition: color 0.3s;
+
+      &:hover {
+        color: darken(#e57373, 10%);
+      }
     }
   }
 
